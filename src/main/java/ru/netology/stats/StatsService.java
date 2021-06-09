@@ -1,6 +1,7 @@
 package ru.netology.stats;
 
 public class StatsService {
+
     public int minSales(long[] sales) {
         int minMonth = 0;
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
@@ -16,9 +17,9 @@ public class StatsService {
     }
 
     public int maxSales(long[] sales) {
-            int maxMonth = 0;
-            int month = 0; // переменная для индекса рассматриваемого месяца в массиве
-            for (long sale : sales) {
+        int maxMonth = 0;
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        for (long sale : sales) {
             if (sale >= sales[maxMonth]) {
                 maxMonth = month;
             }
@@ -37,26 +38,13 @@ public class StatsService {
     }
 
     public long calculateAverage(long[] sales) {
-        long sum = 0;
-        long average = 0;
-        for (long sale : sales) {
-            // аналог sum = sum + purchase;
-            sum += sale;
-        }
-        average = sum / sales.length;
+        long sumForAverage = calculateSum(sales);   // переменная с суммой из метода calculateSum
+        long average = sumForAverage / sales.length;
         return average;
     }
 
     public long monthAnderAverage(long[] sales) {
-        long sum = 0;
-        long average = 0;
-        for (long sale : sales) {
-            // аналог sum = sum + purchase;
-            sum += sale;
-        }
-        average = sum / sales.length;
-
-
+        long average = calculateAverage(sales);  // переменная со средней суммой из метода  calculateAverage
         int month = 0;                     // переменная для кол-ва месяцев с суммой меньше среднего
         for (long sale : sales) {
             if (sale < average) {
@@ -67,15 +55,7 @@ public class StatsService {
     }
 
     public long montAfterAverage(long[] sales) {
-        long sum = 0;
-        long average = 0;
-        for (long sale : sales) {
-            // аналог sum = sum + purchase;
-            sum += sale;
-        }
-        average = sum / sales.length;
-
-
+        long average = calculateAverage(sales);  // переменная со средней суммой из метода  calculateAverage
         int month = 0;                     // переменная для кол-ва месяцев с суммой больше среднего
         for (long sale : sales) {
             if (sale > average) {
@@ -85,4 +65,4 @@ public class StatsService {
         return month;
     }
 
-    }
+}
